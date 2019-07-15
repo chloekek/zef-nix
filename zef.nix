@@ -10,10 +10,10 @@ stdenv.mkDerivation rec {
     phases = ["unpackPhase" "installPhase" "fixupPhase"];
     installPhase = ''
         mkdir --parents $out/{bin,share}
-        mv bin lib resources $out/share
+        mv META6.json bin lib resources $out/share
 
         makeWrapper ${rakudo}/bin/perl6 $out/bin/zef \
-            --prefix PERL6LIB , $out/share/lib \
+            --prefix PERL6LIB , $out/share \
             --argv0 zef \
             --add-flags $out/share/bin/zef
     '';
